@@ -1,0 +1,77 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HesapMakinesi4.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- ortak renkler -->
+            <Color x:Key="PageBgLight">#F3F3F3</Color>
+            <Color x:Key="PageBgDark">#202020</Color>
+            <Color x:Key="TextLight">Black</Color>
+            <Color x:Key="TextDark">White</Color>
+
+            <!-- ortak buton stili -->
+            <Style TargetType="Button" x:Key="CommonButtonStyle">
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}" />
+            </Style>
+
+            <Style TargetType="Button" BasedOn="{StaticResource CommonButtonStyle}" />
+
+            <Style TargetType="Button" x:Key="NumberButtonStyle" BasedOn="{StaticResource CommonButtonStyle}">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#FFFFFF, Dark=#3B3B3B}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style TargetType="Button" x:Key="OperationButtonStyle" BasedOn="{StaticResource CommonButtonStyle}">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#F9F9F9, Dark=#323232}" />
+            </Style>
+
+            <Style TargetType="Button" x:Key="EqualsButtonStyle" BasedOn="{StaticResource CommonButtonStyle}">
+                <Setter Property="BackgroundColor" Value="#DBA5E9" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <!-- label stilleri -->
+            <Style TargetType="Label" x:Key="HistoryLabelStyle">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=Gray, Dark=#AAAAAA}" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <!-- Standart sayfa için biraz daha büyük geçmiş etiketi -->
+            <Style TargetType="Label" x:Key="StandardHistoryLabelStyle" BasedOn="{StaticResource HistoryLabelStyle}">
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="DisplayLabelStyle">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="48" />
+            </Style>
+
+            <!-- Aayarlar sayfası için özel baslık -->
+            <Style TargetType="Label" x:Key="SettingsHeaderStyle">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="SettingsSubHeaderStyle">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=Gray, Dark=#AAAAAA}" />
+            </Style>
+
+            <!-- sayfa stili-->
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PageBgLight}, Dark={StaticResource PageBgDark}}" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

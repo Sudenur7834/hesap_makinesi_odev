@@ -1,0 +1,23 @@
+<Shell
+    x:Class="HesapMakinesi4.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:HesapMakinesi4"
+    FlyoutBehavior="Flyout">
+
+    <!-- standart bölüme geçiş sekmesi -->
+    <FlyoutItem Title="Standart">
+        <ShellContent ContentTemplate="{DataTemplate local:StandardPage}" />
+    </FlyoutItem>
+
+    <!-- bilimsel bölüme geçiş sekmesi -->
+    <FlyoutItem Title="Bilimsel">
+        <ShellContent ContentTemplate="{DataTemplate local:ScientificPage}" />
+    </FlyoutItem>
+
+    <!-- ayarlar bölümüne geçiş sekmesi -->
+    <FlyoutItem Title="Ayarlar">
+        <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
+    </FlyoutItem>
+
+</Shell>

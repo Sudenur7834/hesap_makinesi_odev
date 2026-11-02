@@ -1,0 +1,129 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HesapMakinesi4.ScientificPage"
+             Title="Bilimsel">
+
+    <!--ekranı 3 alana böldük sonuc yazan auto alanı menu alanı ve tus takımı -->
+    <Grid RowDefinitions="Auto, Auto, *" Padding="8" RowSpacing="10">
+
+        <!--hesap makinesi ana ekran-->
+        <VerticalStackLayout Grid.Row="0" HorizontalOptions="End" Spacing="0" Margin="0,10,10,20">
+            <!-- FontSize özellikleri App.xaml stilinden alınıyor -->
+            <Label x:Name="HistoryLabel" Text="" Style="{StaticResource HistoryLabelStyle}" />
+            <Label x:Name="DisplayLabel" Text="0" Style="{StaticResource DisplayLabelStyle}" />
+        </VerticalStackLayout>
+
+        <!--açılır menunun bulundugu kod blogu-->
+        <HorizontalStackLayout Grid.Row="1" Spacing="20" Margin="5,0,0,10">
+            <!--burada label kullandık ama tıklama özelliğini de ekledım -->
+            <Label Text="📐 Trigonometri ∨" FontSize="13" TextColor="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="trigonometriMenuTiklandi" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Text="ƒ İşlev ∨" FontSize="13" TextColor="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="islevMenuTiklandi" />
+                </Label.GestureRecognizers>
+            </Label>
+        </HorizontalStackLayout>
+
+        <Grid Grid.Row="2">
+
+            <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,*,*,*,*" ColumnSpacing="4" RowSpacing="4">
+
+                <!--1.satır -->
+                <Button x:Name="Btn2nd" Text="2nd" Clicked="ikinciFonksiyonDegistir" Grid.Row="0" Grid.Column="0" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="π" Clicked="sabitSayiTiklandi" Grid.Row="0" Grid.Column="1" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="e" Clicked="sabitSayiTiklandi" Grid.Row="0" Grid.Column="2" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="C" Clicked="temizleButonuSecildi" Grid.Row="0" Grid.Column="3" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="⌫" Clicked="silmeTusunaBasildi" Grid.Row="0" Grid.Column="4" Style="{StaticResource OperationButtonStyle}" />
+
+                <!--2. satır-->
+                <Button x:Name="BtnRow1" Text="x²" Clicked="bilimselislemYap" Grid.Row="1" Grid.Column="0" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="1/x" Clicked="bilimselislemYap" Grid.Row="1" Grid.Column="1" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="|x|" Clicked="bilimselislemYap" Grid.Row="1" Grid.Column="2" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="exp" Clicked="bilimselislemYap" Grid.Row="1" Grid.Column="3" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="mod" Clicked="islemButonunaBasildi" Grid.Row="1" Grid.Column="4" Style="{StaticResource OperationButtonStyle}" />
+
+                <!--3. satır-->
+                <Button x:Name="BtnRow2" Text="²√x" Clicked="bilimselislemYap" Grid.Row="2" Grid.Column="0" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="(" Clicked="parantezTiklandi" Grid.Row="2" Grid.Column="1" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text=")" Clicked="parantezTiklandi" Grid.Row="2" Grid.Column="2" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="n!" Clicked="bilimselislemYap" Grid.Row="2" Grid.Column="3" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="÷" Clicked="islemButonunaBasildi" Grid.Row="2" Grid.Column="4" Style="{StaticResource OperationButtonStyle}" />
+
+                <!--4. satır-->
+                <Button x:Name="BtnRow3" Text="xʸ" Clicked="islemButonunaBasildi" Grid.Row="3" Grid.Column="0" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="7" Clicked="sayiButonunaBasildi" Grid.Row="3" Grid.Column="1" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="8" Clicked="sayiButonunaBasildi" Grid.Row="3" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="9" Clicked="sayiButonunaBasildi" Grid.Row="3" Grid.Column="3" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="×" Clicked="islemButonunaBasildi" Grid.Row="3" Grid.Column="4" Style="{StaticResource OperationButtonStyle}" />
+
+                <!--5. satır-->
+                <Button x:Name="BtnRow4" Text="10ˣ" Clicked="bilimselislemYap" Grid.Row="4" Grid.Column="0" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="4" Clicked="sayiButonunaBasildi" Grid.Row="4" Grid.Column="1" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="5" Clicked="sayiButonunaBasildi" Grid.Row="4" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="6" Clicked="sayiButonunaBasildi" Grid.Row="4" Grid.Column="3" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="−" Clicked="islemButonunaBasildi" Grid.Row="4" Grid.Column="4" Style="{StaticResource OperationButtonStyle}" />
+
+                <!--6. satır-->
+                <Button x:Name="BtnRow5" Text="log" Clicked="bilimselislemYap" Grid.Row="5" Grid.Column="0" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="1" Clicked="sayiButonunaBasildi" Grid.Row="5" Grid.Column="1" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="2" Clicked="sayiButonunaBasildi" Grid.Row="5" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="3" Clicked="sayiButonunaBasildi" Grid.Row="5" Grid.Column="3" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="+" Clicked="islemButonunaBasildi" Grid.Row="5" Grid.Column="4" Style="{StaticResource OperationButtonStyle}" />
+
+                <!--7. satır-->
+                <Button x:Name="BtnRow6" Text="ln" Clicked="bilimselislemYap" Grid.Row="6" Grid.Column="0" Style="{StaticResource OperationButtonStyle}" />
+                <Button Text="+/-" Clicked="isaretDegistir" Grid.Row="6" Grid.Column="1" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="0" Clicked="sayiButonunaBasildi" Grid.Row="6" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="," Clicked="virgulEkle" Grid.Row="6" Grid.Column="3" Style="{StaticResource NumberButtonStyle}" />
+                <Button Text="=" Clicked="sonucuHesapla" Grid.Row="6" Grid.Column="4" Style="{StaticResource EqualsButtonStyle}" />
+            </Grid>
+
+            <!-- trigonometri alanı -->
+            <Border x:Name="TrigMenuBorder" IsVisible="False" ZIndex="10" 
+                    BackgroundColor="{AppThemeBinding Light=#F3F3F3, Dark=#2B2B2B}"
+                    Stroke="{AppThemeBinding Light=#CCCCCC, Dark=#444444}" StrokeThickness="1"
+                    HorizontalOptions="Start" VerticalOptions="Start" Margin="5,-5,0,0" Padding="8">
+                <!--görüntü güzel dursun diye köşeleri burada yuvarladık-->
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <Grid RowDefinitions="45,45" ColumnDefinitions="60,60,60,60" ColumnSpacing="5" RowSpacing="5">
+                    <Button x:Name="Trig2ndBtn" Text="2nd" Clicked="trigIkinciFonksiyonDegistir" Grid.Row="0" Grid.Column="0" Style="{StaticResource OperationButtonStyle}" />
+                    <Button x:Name="BtnSin" Text="sin" Clicked="bilimselislemYap" Grid.Row="0" Grid.Column="1" Style="{StaticResource OperationButtonStyle}" />
+                    <Button x:Name="BtnCos" Text="cos" Clicked="bilimselislemYap" Grid.Row="0" Grid.Column="2" Style="{StaticResource OperationButtonStyle}" />
+                    <Button x:Name="BtnTan" Text="tan" Clicked="bilimselislemYap" Grid.Row="0" Grid.Column="3" Style="{StaticResource OperationButtonStyle}" />
+
+                    <Button Text="hyp" Clicked="ikinciFonksiyonDegistir" Grid.Row="1" Grid.Column="0" Style="{StaticResource OperationButtonStyle}" />
+                    <Button x:Name="BtnSec" Text="sec" Clicked="bilimselislemYap" Grid.Row="1" Grid.Column="1" Style="{StaticResource OperationButtonStyle}" />
+                    <Button x:Name="BtnCsc" Text="csc" Clicked="bilimselislemYap" Grid.Row="1" Grid.Column="2" Style="{StaticResource OperationButtonStyle}" />
+                    <Button x:Name="BtnCot" Text="cot" Clicked="bilimselislemYap" Grid.Row="1" Grid.Column="3" Style="{StaticResource OperationButtonStyle}" />
+                </Grid>
+            </Border>
+
+            <!-- işlev alanı -->
+            <Border x:Name="FuncMenuBorder" IsVisible="False" ZIndex="10" 
+                    BackgroundColor="{AppThemeBinding Light=#F3F3F3, Dark=#2B2B2B}"
+                    Stroke="{AppThemeBinding Light=#CCCCCC, Dark=#444444}" StrokeThickness="1"
+                    HorizontalOptions="Start" VerticalOptions="Start" Margin="105,-5,0,0" Padding="8">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <Grid RowDefinitions="45,45" ColumnDefinitions="60,60,60" ColumnSpacing="5" RowSpacing="5">
+                    <Button Text="|x|" Clicked="bilimselislemYap" Grid.Row="0" Grid.Column="0" Style="{StaticResource OperationButtonStyle}" />
+                    <Button Text="⌊x⌋" Clicked="bilimselislemYap" Grid.Row="0" Grid.Column="1" Style="{StaticResource OperationButtonStyle}" />
+                    <Button Text="⌈x⌉" Clicked="bilimselislemYap" Grid.Row="0" Grid.Column="2" Style="{StaticResource OperationButtonStyle}" />
+
+                    <Button Text="rand" Clicked="bilimselislemYap" Grid.Row="1" Grid.Column="0" Style="{StaticResource OperationButtonStyle}" />
+                    <Button Text="→dms" Clicked="bilimselislemYap" Grid.Row="1" Grid.Column="1" Style="{StaticResource OperationButtonStyle}" />
+                    <Button Text="→deg" Clicked="bilimselislemYap" Grid.Row="1" Grid.Column="2" Style="{StaticResource OperationButtonStyle}" />
+                </Grid>
+            </Border>
+
+        </Grid>
+    </Grid>
+</ContentPage>
